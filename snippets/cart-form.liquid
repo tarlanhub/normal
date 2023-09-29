@@ -1,0 +1,279 @@
+<cart-form id="AjaxCartForm">
+
+	{%- if template != 'cart' and settings.cart_free_shipping -%}
+		<div class="cart-notice text-size--small hide-if-empty-cart">
+			<shipping-notice
+				data-free-shipping="{{ settings.cart_free_shipping_amount | times: 100 }}"
+				data-cart-total="{{ cart.total_price }}"
+			>
+				<span data-js-free-shipping-text></span>
+				<span class="cart-notice__slider">
+					<span class="cart-notice__slider-bar" data-js-free-shipping-slider></span>
+				</span>
+			</shipping-notice>
+		</div>
+		<script src="{{ 'component-shipping-notice.js' | asset_url }}" defer></script>
+	{%- endif -%}
+
+	<form action="{{ routes.cart_url }}" method="post" novalidate class="cart__form {% if cart.item_count == 0 %} cart--empty {% endif %}" id="cart">
+	
+		<div class="cart-holder" data-items="{{ cart.items.size }}">
+			
+			<div class="cart__items">
+
+				{%- if cart.item_count > 0 -%}
+				
+					{%- for item in cart.items -%}
+
+						<div id="item-{{ item.id }}" class="cart-item" data-title="{{ item.product.title | escape }} {%- unless item.product.has_only_default_variant -%} ({{ item.variant.title | escape }}) {%- endunless -%}" data-id="{{ item.variant_id }}" data-product-id="{{ item.product.id }}" data-qty="{{ item.quantity }}" data-js-cart-item>
+
+							<a href="{{ item.url }}" class="cart-item__thumbnail">
+								{%- render 'lazy-image-small', image: item.image, aspect_ratio: settings.cart_image_ratio, class: 'lazy-image--scale-animation' -%}
+							</a>
+
+							<div class="cart-item__content">
+
+								<div>
+
+									<div class="cart-item__price">
+
+										{%- if item.final_line_price < item.original_line_price -%}
+											<span class="visually-hidden">{{ 'general.accessibility_labels.price.regular' | t }}</span>
+											<strong>{{ item.final_line_price | money }}</strong>
+											<span class="visually-hidden">{{ 'general.accessibility_labels.price.sale' | t }}</span>
+											<span><del>{{ item.original_line_price | money }}</del></span>
+										{%- elsif item.variant.compare_at_price > item.variant.price -%}
+											<span class="visually-hidden">{{ 'general.accessibility_labels.price.regular' | t }}</span>
+											<strong>{{ item.final_line_price | money }}</strong>
+											<span class="visually-hidden">{{ 'general.accessibility_labels.price.sale' | t }}</span>
+											<span><del>{{ item.variant.compare_at_price | times: item.quantity | money }}</del></span>
+										{%- else -%}
+											<span class="visually-hidden">{{ 'general.accessibility_labels.price.regular' | t }}</span>
+											<strong>{{ item.final_line_price | money }}</strong>
+										{%- endif -%}
+
+									</div>
+
+									{%- if item.unit_price_measurement -%}
+										<span class="cart-item__unit-price text-size--small text-color--opacity">
+											{{ item.unit_price | money }} / 
+											{% if item.unit_price_measurement.reference_value != 1 %}
+												{{ item.unit_price_measurement.reference_value }}
+											{% endif %}
+											{{ item.unit_price_measurement.reference_unit }}
+										</span>
+									{%- endif -%}
+
+									<a href="{{ item.url }}" class="cart-item__title">
+										<span class="text-animation--underline-thin">{{ item.product.title | escape }}</span>
+									</a>
+
+									{%- unless item.product.has_only_default_variant -%}
+											{%- for option in item.options_with_values -%}
+												<span class="cart-item__variant text-size--small text-color--opacity">
+													{{ option.name }}: {{ option.value }}
+											</span>
+											{%- endfor -%}
+									{%- endunless -%}
+
+									{%- if item.selling_plan_allocation -%}
+										<span class="text-size--small">
+											{{ item.selling_plan_allocation.selling_plan.name }} 
+										</span>
+									{%- endif -%}
+
+									{%- if item.line_level_discount_allocations.size > 0 -%}
+										{%- for discount_allocation in item.line_level_discount_allocations -%}
+											<spann class="text-size--small">{{ 'cart.discount' | t }} {{ discount_allocation.discount_application.title }} (-{{ discount_allocation.amount | money }})</spann>
+										{%- endfor -%}
+									{%- endif -%}
+
+									{%- assign property_size = item.properties | size -%}
+									{%- if property_size > 0 -%}
+										{%- for p in item.properties -%}
+											<span class="cart-item__variant text-size-small">
+												{%- unless p.last == blank -%}
+													{{ p.first }}:
+													{%- if p.last contains '/uploads/' -%}
+														<a href="{{ p.last }}">{{ p.last | split: '/' | last }}</a>
+													{%- else -%}
+														{{ p.last }}
+													{%- endif -%}
+												{%- endunless -%}
+											</span>
+										{%- endfor -%}
+									{%- endif -%}
+
+									<div class="cart-item__actions">
+
+										<product-quantity class="quantity-selector-holder">
+											<cart-product-quantity>
+												<button class="qty-button qty-minus no-js-hidden" aria-label="{{ 'general.accessibility_labels.decrease_quantity' | t }}" role="button" controls="updates_{{ item.id }}">
+													{%- render 'theme-symbols', icon: 'minus' -%}
+												</button>
+												<label for="qty-{{ id }}" class="visually-hidden">{{ 'general.accessibility_labels.quantity' | t }}</label>
+												<input type="number" name="updates[]" value="{{ item.quantity }}" min="0" class="qty qty-selector product__quantity" id="updates_{{ item.id }}" data-href="{{ routes.cart_change_url }}?line={{ forloop.index }}&amp;quantity=$qty">
+												<button class="qty-button qty-plus no-js-hidden" aria-label="{{ 'general.accessibility_labels.increase_quantity' | t }}" role="button" controls="updates_{{ item.id }}">
+													{%- render 'theme-symbols', icon: 'plus' -%}
+												</button>
+											</cart-product-quantity>
+										</product-quantity>
+										<a href="{{ routes.cart_change_url }}?line={{ forloop.index }}&amp;quantity=0" class="remove text-link text-size--small" title="{{ 'cart.remove_item' | t }}">{{ 'cart.remove_item' | t }}</a>
+			
+									</div>
+
+								</div>
+
+							</div>
+								
+						</div>
+
+					{%- endfor -%}
+
+                        <div class="cart-item quick-cart__item free-product-item">
+                            <figure class="lazy-image lazy-image--scale-animation lazyloaded">
+                                <img src="https://cdn.shopify.com/s/files/1/0514/9691/1040/files/bag.png" alt="" />
+                            </figure>
+                        
+                            <div class="cart-item__content">
+                                <div>
+                                    <div class="cart-item__price"><span>Free</span></div>
+                                    <div class="cart-item__title">
+                                        <span class="text-animation--underline-thin">Collection Bag</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>   
+
+				{%- else -%}
+
+					{{ 'cart.empty' | t }}
+
+				{%- endif -%}
+
+                    {% assign offer_product = settings.plays_well_product_cart %}
+
+                    <div id="offer-product" class="offer-product hide-when-cart-empty" data-offer-product="">
+                          <div class="offer-title-text">
+                              <span class="heading font-extrabold text-dark-purple">Plays well with...</span>
+                              <span class="discount font-medium text-dark-purple">Save {% if offer_product.compare_at_price_max > offer_product.price %}{{ offer_product.compare_at_price_max | minus: offer_product.price | money | remove: '.00'  }}{% endif %}</span>
+                          </div>
+                          <div class="product-inner">
+                              <img class="bg-clay w-32 " src="{{ offer_product.featured_image|img_url:'115x' }}" alt="{{ offer_product.featured_image.alt | escape }}"/>
+                              <div class="product-content">
+                                  <div class="pro-title-price">
+                                      <span class="title text-dark-purple">
+                                          Toy Care Essentials
+                                      </span>
+                                      <div class="offer_prod_price">
+                                        <span class="price">
+                                        {{ offer_product.compare_at_price | money_without_trailing_zeros }}
+                                        </span>
+                                        <span class="title text-dark-purple ml-2">
+                                         {{ offer_product.price | money_without_trailing_zeros }}
+                                         </span>
+                                      </div>
+                                  </div>
+                                  <div class="pro-desc">
+                                      <p><meta charset="utf-8" /><meta charset="utf-8" /><span data-mce-fragment="1">Toy-friendly and body-safe, our lube and cleaning spray are designed to keep you playing for longer.</span><br /></p>
+                                  </div>
+                      
+                                  <div class="product__form-container">
+                                      <div class="product__form-wrapper">
+
+                                        <a onclick="offerAdd()" id="offer-product-cart-buton" data-js-cart-item class="offer-product-cart-cls btn btn--to-secondary btn--full bg-dark-purple border-white border-2" data-variant-id="{{ offer_product.variants.first.id }}"  name="add" aria-label="Add to Bag">
+                                          <span class="primary-text tranformtext btn btn-add-cart " aria-hidden="false" style="cursor:pointer"> Add to Bag </span>
+                                        </a>
+                                        
+                                      </div>
+                                  </div>
+
+                                
+                              </div>
+                          </div>
+                      </div>
+  
+                      <div class="offer-text">
+                        <div class="title drawer-shipping-content">
+                          <span>{{ settings.offer_text_heading }}</span><small>?</small>
+                        </div>
+                          <div class="back-product hide">
+                            <div class="icon-text">
+                              <img src="https://cdn.shopify.com/s/files/1/0514/9691/1040/files/Union.png?v=1623825739">
+                              <span class="text text-dark-purple">{{ settings.offer_text_detail_data }} </span>
+                            </div>
+                            <div class="icon-text">
+                              <img src="https://cdn.shopify.com/s/files/1/0514/9691/1040/files/Exclude.png?v=1623825752">
+                              <span class="text text-dark-purple">{{ settings.offer_text_detail_data2 }}</span>
+                            </div>
+                          </div>
+                        </div>
+                      
+
+			</div>
+
+		</div>
+
+	</form>
+
+	<span class="cart__count hidden" aria-hidden="true" data-cart-count>{{ cart.item_count }}</span>
+	<span class="cart__total hidden" aria-hidden="true" data-cart-total>{{ cart.total_price | money }}</span>
+
+</cart-form>
+
+
+<script>
+
+		function offerAdd(){
+      var varID = $("#offer-product-cart-buton").data("variant-id");
+
+		
+
+			const body = JSON.stringify({
+				id: varID,
+				quantity: 1
+			});
+
+			fetch('/cart/add.js', {
+					method: 'POST',
+					headers: { 'Content-Type': 'application/json', 'Accept': 'application/javascript' },
+					body
+				})
+				.then(response => {
+					if ( response.ok ) {
+						return fetch('?section_id=helper-cart')
+					} else {
+						throw new Error('Something went wrong');
+					}
+				})
+				.then(response => response.text())
+				.then(text => {
+
+					const sectionInnerHTML = new DOMParser().parseFromString(text, 'text/html');
+					const cartFormInnerHTML = sectionInnerHTML.getElementById('AjaxCartForm').innerHTML;
+					const cartSubtotalInnerHTML = sectionInnerHTML.getElementById('AjaxCartSubtotal').innerHTML;
+
+					const cartItems = document.getElementById('AjaxCartForm');
+					cartItems.innerHTML = cartFormInnerHTML;
+					cartItems.ajaxifyCartItems();
+
+					document.querySelectorAll('[data-header-cart-count]').forEach(elm=>{
+						elm.textContent = cartItems.querySelector('[data-cart-count]').textContent;
+					});
+					document.querySelectorAll('[data-header-cart-total').forEach(elm=>{
+						elm.textContent = cartItems.querySelector('[data-cart-total]').textContent;
+					});
+
+					document.getElementById('AjaxCartSubtotal').innerHTML = cartSubtotalInnerHTML;
+
+				})
+				.catch(e => {
+					console.log(e);
+					let alert = document.createElement('span');
+					alert.classList.add('alert', 'alert--error');
+					alert.textContent = KROWN.settings.locales.cart_general_error;
+					this.form.prepend(alert);
+				})
+				
+		}
+</script>

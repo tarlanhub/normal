@@ -1,0 +1,102 @@
+
+<div class="double-image-text__wrapper">
+	<div class="double-image-text--block">
+	 {% for block in section.blocks %}
+          <div class="double-image-text__inner">
+                <img class= "double-image-text__img" src={{ block.settings.image | img_url : "" }}>
+            <div class="double-image-text__text-wrapper">
+                <span class="double-image-text__heading">{{ block.settings.heading }} </span>
+                <span  class="double-image-text__sub-heading" ">{{ block.settings.sub_heading }} </span>
+                <span class="double-image-text__content">{{ block.settings.content }}</span>
+          </div>
+          </div>
+     {% endfor %}   
+    </div>
+</div>
+
+<style>
+.double-image-text__img{
+    object-fit:contain;
+}
+.double-image-text__wrapper{
+    background:#5B1D3D;
+}
+.double-image-text--block {
+    display: flex;
+    margin: 0 auto;
+    justify-content: space-evenly;
+    max-width: 1440px;
+    flex-wrap: wrap;
+  padding-top: 80px;
+    padding-bottom: 80px;
+}
+.double-image-text__text-wrapper {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    color:white;
+    max-width:300px;
+    padding-left:25px;
+}
+.double-image-text__inner {
+    display: flex;
+flex-wrap:wrap;
+  justify-content:center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.double-image-text__heading{
+    padding-bottom:10px;
+  padding-top:10px;
+    font-weight:800;
+      font-size: 24px;
+}
+.double-image-text__sub-heading{
+    padding-bottom:20px;
+    color:#AD8E9E;
+}
+.double-image-text__content p{
+  margin:0;
+}
+</style>
+{% schema %}
+  {
+    "name": "Double Image Text",
+    "settings": [ ],
+    "blocks": [
+			{
+				"type": "block",
+				"name": "block",
+                "limit":2,
+				"settings": [
+				   {
+                      "type": "image_picker",
+                      "id": "image",
+                      "label": "Image"
+                   }, 
+				   {
+                      "type": "text",
+                      "id": "heading",
+                      "label": "Heading"
+                   },
+                   {
+                      "type": "text",
+                      "id": "sub_heading",
+                      "label": "Sub Heading"
+                   },
+                   {
+                      "type": "richtext",
+                      "id": "content",
+                      "label": "Content"
+                   }
+				]
+			}
+    ],    
+     "presets": [
+      {
+        "name": "Double Image Text",
+        "category": "Sections"
+      }
+    ]
+  }
+{% endschema %}

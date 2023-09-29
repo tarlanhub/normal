@@ -1,0 +1,91 @@
+
+	<div class="modules__wrapper">
+	<div class="modules__wrapper--block">
+		{% for block in section.blocks %}
+          <div class="modules__inner--block">
+            <a onclick="document.getElementById('#{{ block.settings.text_id }}').scrollIntoView({
+  behavior: 'smooth'
+})" href="{{ page.url }}#{{ block.settings.text_id }}">{{ block.settings.heading }} </a>
+          </div>
+        {% endfor %}   
+    </div>
+	</div>
+<script>
+  scrollto(){
+    
+  }
+</script>
+
+<style>
+  .modules__wrapper {
+    width: 100%;
+    max-width: 1400px;
+    display: block;
+    position: relative;
+    margin: 0 auto;
+        padding-right: 40px;
+    padding-right: 10px;
+}
+ .modules__wrapper--block {
+        display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.625rem;
+    height: 100%;
+    align-items: center;
+    max-width: 100%;
+    margin-left: auto;
+}
+ .modules__inner--block {
+    display: inline-block;
+    padding: 0.375rem 0.75rem 0.3125rem;
+    line-height: 1;
+    border-radius: 1.25rem;
+    background-color: transparent;
+    border: solid 1px var(--color-secondary-text-main);
+    color: var(--color-text-main);
+}
+
+   @media screen and (max-width:768px){
+     .modules__wrapper--block {
+        display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 0.625rem;
+    height: 100%;
+    align-items: center;
+    max-width: 100%;
+    margin-left: auto;
+}
+   }
+  </style>
+{% schema %}
+  {
+    "name": "modules",
+    "blocks": [
+			{
+				"type": "block",
+				"name": "block",
+				"settings": [
+				   {
+                      "type": "text",
+                      "id": "heading",
+                      "label": "Heading"
+                   },
+				   {
+					  "type": "text",
+					  "id": "text_id",
+					  "label": "Anchor Id",
+                       "info":"For example, 'Module1' "
+				   }
+				]
+			}
+    ],    
+     "presets": [
+      {
+        "name": "Modules",
+        "category": "Sections"
+      }
+    ]
+  }
+{% endschema %}

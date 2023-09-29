@@ -1,0 +1,302 @@
+{{ 'custom-pages.css' | asset_url | stylesheet_tag }}
+{%- assign current_variant = product.selected_or_first_available_variant -%}
+{%- assign current_variant_sale = false -%}
+{% if current_variant.compare_at_price > current_variant.price %}
+  {%- assign current_variant_sale = true -%}
+{% endif %}
+
+<div class="product-template" data-section-id="{{ section.id }}" data-section-type="product-template" data-variant-id="{{ current_variant.id }}" itemscope itemtype="http://schema.org/Product">
+  <div class="rounded-border overflow-hidden product-{{product.id}} w-full">
+      {% if product.metafields.category.isgiftcard == 'true' %}
+          {% include 'gift-card' %}
+      {% else %}
+          <!-- Mobile View -->
+          <div class="bg-clay text-dark-purple pt-36 md:pt-108 md:hidden">
+              <div class="p-4">
+
+                  <div class="image-displayer flex flex-col justify-end">
+                    <div class="relative">
+                      
+                       <!-- WISTIA CODE -->
+                          <script src="https://fast.wistia.com/embed/medias/nxbwomovwn.jsonp" async></script><script src="https://fast.wistia.com/assets/external/E-v1.js" async></script>
+                          <div class="wistia_responsive_padding rounded-border overflow-hidden border-img" style="padding:56.25% 0 0 0;position:relative;">
+                            <div class="wistia_responsive_wrapper" style="height:100%;left:0;position:absolute;top:0;width:100%;">
+                              <div class="wistia_embed wistia_async_nxbwomovwn videoFoam=true" style="height:100%;position:relative;width:100%">
+                                <div class="wistia_swatch" style="height:100%;left:0;opacity:0;overflow:hidden;position:absolute;top:0;transition:opacity 200ms;width:100%;">
+                                  <img src="https://fast.wistia.com/embed/medias/nxbwomovwn/swatch" style="filter:blur(5px);height:100%;object-fit:contain;width:100%;" alt="" aria-hidden="true" onload="this.parentNode.style.opacity=1;" />
+                                </div>
+                              </div>
+                            </div>
+                            <div class="video-player absolute flex items-center justify-between">
+                               <div class="flex items-center">
+                                 <img src="{{'Vector.png' | asset_img_url: 'master' }}">
+<!--                                  <span class="text">Trailer</span> -->
+                               </div>
+                            </div>
+                          </div>
+                    </div>
+                  </div>
+                 {% if product.handle == "how-to-have-sex"%}
+                     <div class="mb-16 course-title">
+                          <h2 class="text-primary">{{ product.title }}</h2>
+                          <h5 class="text-dark-purple">The sex-ed you wish you had in school</h5>
+                        <p class="text-dark-purple"><span>Video Course</span><span> 15 topics</span><span> 120 min</span></p>
+                      </div>
+                {% endif %}
+                    {% if product.handle == "1470308"%}
+                      <div class="mb-16 course-title">
+                          <h2 class="text-primary">{{ product.title }}</h2>
+                          <h5 class="text-dark-purple">Improve confidence and connection in 120 mins</h5>
+                        <p class="text-dark-purple"><span>Video Course</span><span> 15 topics</span><span> 120 min</span></p>
+                      </div>
+                    {% endif %}
+                
+                    {% if product.handle == "how-to-have-sex"%}
+                    <div class="pb-8 font-medium font-modern text-xl text-dark-purple product-extra-des">{{ product.description }}</div>
+                    <div class="product-tag-service">
+                      
+                      <div><div class="currnt-icon"><svg width="14" height="12" viewBox="0 0 14 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M13.5139 0.348988C14.1117 0.855914 14.1656 1.72917 13.6342 2.29946L5.91003 10.5889C5.64504 10.8733 5.26882 11.0409 4.87012 11.052C4.47142 11.0632 4.08554 10.917 3.8035 10.648L0.42419 7.4243C-0.141397 6.88476 -0.141397 6.00999 0.42419 5.47045C0.989776 4.93091 1.90677 4.93091 2.47236 5.47045L4.76557 7.65805L11.4693 0.463722C12.0007 -0.106569 12.9161 -0.157937 13.5139 0.348988Z" fill="#5B1D3D"/>
+                        </svg></div><div class="product-tag-content product-water-content">Tips and tricks to level up your pleasure skills</div></div>
+                        <div><div class="currnt-icon"><svg width="14" height="12" viewBox="0 0 14 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M13.5139 0.348988C14.1117 0.855914 14.1656 1.72917 13.6342 2.29946L5.91003 10.5889C5.64504 10.8733 5.26882 11.0409 4.87012 11.052C4.47142 11.0632 4.08554 10.917 3.8035 10.648L0.42419 7.4243C-0.141397 6.88476 -0.141397 6.00999 0.42419 5.47045C0.989776 4.93091 1.90677 4.93091 2.47236 5.47045L4.76557 7.65805L11.4693 0.463722C12.0007 -0.106569 12.9161 -0.157937 13.5139 0.348988Z" fill="#5B1D3D"/>
+                        </svg></div><div class="product-tag-content product-water-content">How to build sexual confidence</div></div>
+                        <div><div class="currnt-icon"><svg width="14" height="12" viewBox="0 0 14 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M13.5139 0.348988C14.1117 0.855914 14.1656 1.72917 13.6342 2.29946L5.91003 10.5889C5.64504 10.8733 5.26882 11.0409 4.87012 11.052C4.47142 11.0632 4.08554 10.917 3.8035 10.648L0.42419 7.4243C-0.141397 6.88476 -0.141397 6.00999 0.42419 5.47045C0.989776 4.93091 1.90677 4.93091 2.47236 5.47045L4.76557 7.65805L11.4693 0.463722C12.0007 -0.106569 12.9161 -0.157937 13.5139 0.348988Z" fill="#5B1D3D"/>
+                        </svg></div><div class="product-tag-content product-water-content">Techniques to improve communication with your partner(s)</div></div>
+                        <div><div class="currnt-icon"><svg width="14" height="12" viewBox="0 0 14 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M13.5139 0.348988C14.1117 0.855914 14.1656 1.72917 13.6342 2.29946L5.91003 10.5889C5.64504 10.8733 5.26882 11.0409 4.87012 11.052C4.47142 11.0632 4.08554 10.917 3.8035 10.648L0.42419 7.4243C-0.141397 6.88476 -0.141397 6.00999 0.42419 5.47045C0.989776 4.93091 1.90677 4.93091 2.47236 5.47045L4.76557 7.65805L11.4693 0.463722C12.0007 -0.106569 12.9161 -0.157937 13.5139 0.348988Z" fill="#5B1D3D"/>
+                        </svg></div><div class="product-tag-content product-water-content">Practical exercises designed to help you explore better sex</div></div>
+                    </div>
+                 {% endif %}
+                   {% if product.handle == "1470308"%}
+                    <div class="pb-8 font-medium font-modern text-xl text-dark-purple product-extra-des">{{ product.description }}</div>
+                    <div class="product-tag-service">
+                          <div><div class="currnt-icon"><svg width="14" height="12" viewBox="0 0 14 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M13.5139 0.348988C14.1117 0.855914 14.1656 1.72917 13.6342 2.29946L5.91003 10.5889C5.64504 10.8733 5.26882 11.0409 4.87012 11.052C4.47142 11.0632 4.08554 10.917 3.8035 10.648L0.42419 7.4243C-0.141397 6.88476 -0.141397 6.00999 0.42419 5.47045C0.989776 4.93091 1.90677 4.93091 2.47236 5.47045L4.76557 7.65805L11.4693 0.463722C12.0007 -0.106569 12.9161 -0.157937 13.5139 0.348988Z" fill="#5B1D3D"/>
+                        </svg></div><div class="product-tag-content product-water-content">Tips and tricks to level up your techniques</div></div>
+                        <div><div class="currnt-icon"><svg width="14" height="12" viewBox="0 0 14 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M13.5139 0.348988C14.1117 0.855914 14.1656 1.72917 13.6342 2.29946L5.91003 10.5889C5.64504 10.8733 5.26882 11.0409 4.87012 11.052C4.47142 11.0632 4.08554 10.917 3.8035 10.648L0.42419 7.4243C-0.141397 6.88476 -0.141397 6.00999 0.42419 5.47045C0.989776 4.93091 1.90677 4.93091 2.47236 5.47045L4.76557 7.65805L11.4693 0.463722C12.0007 -0.106569 12.9161 -0.157937 13.5139 0.348988Z" fill="#5B1D3D"/>
+                        </svg></div><div class="product-tag-content product-water-content">Answers to questions you’re scared to ask</div></div>
+                        <div><div class="currnt-icon"><svg width="14" height="12" viewBox="0 0 14 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M13.5139 0.348988C14.1117 0.855914 14.1656 1.72917 13.6342 2.29946L5.91003 10.5889C5.64504 10.8733 5.26882 11.0409 4.87012 11.052C4.47142 11.0632 4.08554 10.917 3.8035 10.648L0.42419 7.4243C-0.141397 6.88476 -0.141397 6.00999 0.42419 5.47045C0.989776 4.93091 1.90677 4.93091 2.47236 5.47045L4.76557 7.65805L11.4693 0.463722C12.0007 -0.106569 12.9161 -0.157937 13.5139 0.348988Z" fill="#5B1D3D"/>
+                        </svg></div><div class="product-tag-content product-water-content">How to improve communication with your partner(s)</div></div>
+                        <div><div class="currnt-icon"><svg width="14" height="12" viewBox="0 0 14 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M13.5139 0.348988C14.1117 0.855914 14.1656 1.72917 13.6342 2.29946L5.91003 10.5889C5.64504 10.8733 5.26882 11.0409 4.87012 11.052C4.47142 11.0632 4.08554 10.917 3.8035 10.648L0.42419 7.4243C-0.141397 6.88476 -0.141397 6.00999 0.42419 5.47045C0.989776 4.93091 1.90677 4.93091 2.47236 5.47045L4.76557 7.65805L11.4693 0.463722C12.0007 -0.106569 12.9161 -0.157937 13.5139 0.348988Z" fill="#5B1D3D"/>
+                        </svg></div><div class="product-tag-content product-water-content">Practical exercises to help explore new sensations</div></div>
+                     </div>
+                    {% endif %}
+                    {% assign full_url = content_for_header | split:'"pageurl":"' | last | split:'"' | first %}
+                    {% form 'customer', action:'/contact' %}
+                      {% if form.posted_successfully? or full_url contains "form_type=customer" %}
+                        <div class="pt-6">
+                          <a class="course-launch btn bg-electric-red tranformtext border-white w-full" href="https://itsnormal.thinkific.com/enroll/1477194?price_id=1808231" target="_blank">Launch course</a>
+                        </div>
+                      {% else %}
+                      <div class="mgts-email-cta flex h-24 mt-10">
+                            <input name="contact[tags]" type="hidden" value="newsletter, course">
+                            <input class="bg-white rounded-l-3xl rounded-r-none text-dark-purple product-extra-des  text-opacity-60 w-3/5 px-7" type="email" value="{% if customer %}{{ customer.email }}{% endif %}" placeholder="Your email address" name="contact[email]" id="NewsletterEmail" aria-label="Your email address" autocorrect="off" autocapitalize="off" required>
+                            <button class="course-get-free-access btn--newsletter__submit bg-electric-red rounded-r-3xl rounded-l-none w-2/5 text-white  product-extra-des font-bold" type="submit">
+                                Get free access!
+                            </button>
+                        </div>
+                        <p class="mt-3 text-xl text-dark-purple text-opacity-60 text-center">We send out a regular dose of modern sex education, exclusive offers and new product updates - but if you're not feeling the vibe, unsubscribe anytime.</p>
+                        <div aria-role="alert">
+                          {{ form.errors | default_errors }}
+                        </div>
+                        {% endif %}
+                    {% endform %}
+              </div>
+              <div class="sticky-product fixed bottom-8 left-8 right-8 max-w-screen-xl px-4 md:px-6 xl:mx-auto">
+                <div class=" p-4  bg-dark-purple overflow-hidden border-white border-2">
+                 <div class="title-price text-center">
+                 <span class="text-primary">{{ product.title }}</span>
+                 <span class="product-price">Free</span>
+                  </div>
+                  <div>
+                    {% assign full_url = content_for_header | split:'"pageurl":"' | last | split:'"' | first %}
+                    {% form 'customer', action:'/contact' %}
+                  {% if form.posted_successfully? or full_url contains "form_type=customer" %}
+                  <div>
+                    <a class="course-launch btn bg-electric-red tranformtext w-full mt-5" href="https://itsnormal.thinkific.com/enroll/1477194?price_id=1808231" target="_blank">Launch course</a>
+                  </div>
+                  {% else %}
+                  <div class="mgts-email-cta flex h-24 mt-5">
+                        <input name="contact[tags]" type="hidden" value="newsletter, course">
+                        <input class="bg-white rounded-l-3xl rounded-r-none text-dark-purple product-extra-des  text-opacity-60 w-3/5 px-7" type="email" value="{% if customer %}{{ customer.email }}{% endif %}" placeholder="Your email address" name="contact[email]" id="NewsletterEmail" aria-label="Your email address" autocorrect="off" autocapitalize="off" required>
+                        <button class="course-get-free-access btn--newsletter__submit bg-electric-red rounded-r-3xl rounded-l-none w-2/5 text-white  product-extra-des font-bold" type="submit">
+                            Get free access!
+                        </button>
+                    </div>
+                    <div aria-role="alert">
+                        {{ form.errors | default_errors }}
+                    </div>
+                    {% endif %}
+                {% endform %}
+
+                  </div>
+                  
+               </div>
+            </div>
+          </div>
+
+          <!-- Desktop View -->
+          <div class="space-course bg-clay text-dark-purple pt-52 md:pt-108 hidden md:block">
+              <div class="flex px-8 pb-8">
+                  <div class="w-3/5 flex justify-start  relative px-8">
+                      <div class="image-displayer flex flex-col justify-start w-full">
+                        <div class="relative">
+                           <!-- WISTIA CODE -->
+                          {% if product.handle == "how-to-have-sex"%}
+                          <script src="https://fast.wistia.com/embed/medias/nxbwomovwn.jsonp" async></script><script src="https://fast.wistia.com/assets/external/E-v1.js" async></script>
+                          <div class="wistia_responsive_padding rounded-border overflow-hidden border-img" style="padding:56.25% 0 0 0;position:relative;">
+                            <div class="wistia_responsive_wrapper" style="height:100%;left:0;position:absolute;top:0;width:100%;">
+                              <div class="wistia_embed wistia_async_nxbwomovwn videoFoam=true" style="height:100%;position:relative;width:100%">
+                                <div class="wistia_swatch" style="height:100%;left:0;opacity:0;overflow:hidden;position:absolute;top:0;transition:opacity 200ms;width:100%;">
+                                  <img src="https://fast.wistia.com/embed/medias/nxbwomovwn/swatch" style="filter:blur(5px);height:100%;object-fit:contain;width:100%;" alt="" aria-hidden="true" onload="this.parentNode.style.opacity=1;" />
+                                </div>
+                              </div>
+                            </div>
+                            <div class="video-player absolute flex items-center justify-between">
+                               <div class="flex items-center">
+                                 <img src="{{'Vector.png' | asset_img_url: 'master' }}">
+                               </div>
+                            </div>
+                          </div>
+					   {% endif %}
+                          
+                          {% if product.handle == "1470308"%}
+                          <script src="https://fast.wistia.com/embed/medias/nxbwomovwn.jsonp" async></script><script src="https://fast.wistia.com/assets/external/E-v1.js" async></script>
+                          <div class="wistia_responsive_padding rounded-border overflow-hidden border-img" style="padding:56.25% 0 0 0;position:relative;">
+                            <div class="wistia_responsive_wrapper" style="height:100%;left:0;position:absolute;top:0;width:100%;">
+                              <div class="wistia_embed wistia_async_nxbwomovwn videoFoam=true" style="height:100%;position:relative;width:100%">
+                                <div class="wistia_swatch" style="height:100%;left:0;opacity:0;overflow:hidden;position:absolute;top:0;transition:opacity 200ms;width:100%;">
+                                  <img src="https://fast.wistia.com/embed/medias/nxbwomovwn/swatch" style="filter:blur(5px);height:100%;object-fit:contain;width:100%;" alt="" aria-hidden="true" onload="this.parentNode.style.opacity=1;" />
+                                </div>
+                              </div>
+                            </div>
+                            <div class="video-player absolute flex items-center justify-between">
+                               <div class="flex items-center">
+                                 <img src="{{'Vector.png' | asset_img_url: 'master' }}">
+                               </div>
+<!--                                <p class="note">Safe for work and takes just 90 seconds!</p> -->
+                            </div>
+                          </div>
+					   {% endif %}
+                         
+                        </div>
+                      </div>
+                  </div>
+                  <div class="w-2/5 px-8">
+                    {% if product.handle == "how-to-have-sex"%}
+                      <div class="mb-16 course-title">
+                          <h2 class="text-primary">{{ product.title }}</h2>
+                          <h5 class="text-dark-purple">The sex-ed you wish you had in school</h5>
+                        <p class="text-dark-purple"><span>Video Course</span><span> 15 topics</span><span> 120 min</span></p>
+                      </div>
+                     {% endif %}
+                    
+                    {% if product.handle == "1470308"%}
+                      <div class="mb-16 course-title">
+                          <h2 class="text-primary">{{ product.title }}</h2>
+                          <h5 class="text-dark-purple">Improve confidence and connection in 120 mins</h5>
+                        <p class="text-dark-purple"><span>Video Course</span><span> 15 topics</span><span> 120 min</span></p>
+                      </div>
+                    {% endif %}
+                    
+                     
+                     {% if product.handle == "how-to-have-sex"%}
+                    <div class="pb-8 font-medium font-modern text-xl text-dark-purple product-extra-des">{{ product.description }}</div>
+                    <div class="product-tag-service">
+                      
+                      <div><div class="currnt-icon"><svg width="14" height="12" viewBox="0 0 14 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M13.5139 0.348988C14.1117 0.855914 14.1656 1.72917 13.6342 2.29946L5.91003 10.5889C5.64504 10.8733 5.26882 11.0409 4.87012 11.052C4.47142 11.0632 4.08554 10.917 3.8035 10.648L0.42419 7.4243C-0.141397 6.88476 -0.141397 6.00999 0.42419 5.47045C0.989776 4.93091 1.90677 4.93091 2.47236 5.47045L4.76557 7.65805L11.4693 0.463722C12.0007 -0.106569 12.9161 -0.157937 13.5139 0.348988Z" fill="#5B1D3D"/>
+                        </svg></div><div class="product-tag-content product-water-content">Tips and tricks to level up your pleasure skills</div></div>
+                        <div><div class="currnt-icon"><svg width="14" height="12" viewBox="0 0 14 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M13.5139 0.348988C14.1117 0.855914 14.1656 1.72917 13.6342 2.29946L5.91003 10.5889C5.64504 10.8733 5.26882 11.0409 4.87012 11.052C4.47142 11.0632 4.08554 10.917 3.8035 10.648L0.42419 7.4243C-0.141397 6.88476 -0.141397 6.00999 0.42419 5.47045C0.989776 4.93091 1.90677 4.93091 2.47236 5.47045L4.76557 7.65805L11.4693 0.463722C12.0007 -0.106569 12.9161 -0.157937 13.5139 0.348988Z" fill="#5B1D3D"/>
+                        </svg></div><div class="product-tag-content product-water-content">How to build sexual confidence</div></div>
+                        <div><div class="currnt-icon"><svg width="14" height="12" viewBox="0 0 14 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M13.5139 0.348988C14.1117 0.855914 14.1656 1.72917 13.6342 2.29946L5.91003 10.5889C5.64504 10.8733 5.26882 11.0409 4.87012 11.052C4.47142 11.0632 4.08554 10.917 3.8035 10.648L0.42419 7.4243C-0.141397 6.88476 -0.141397 6.00999 0.42419 5.47045C0.989776 4.93091 1.90677 4.93091 2.47236 5.47045L4.76557 7.65805L11.4693 0.463722C12.0007 -0.106569 12.9161 -0.157937 13.5139 0.348988Z" fill="#5B1D3D"/>
+                        </svg></div><div class="product-tag-content product-water-content">Techniques to improve communication with your partner(s)</div></div>
+                        <div><div class="currnt-icon"><svg width="14" height="12" viewBox="0 0 14 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M13.5139 0.348988C14.1117 0.855914 14.1656 1.72917 13.6342 2.29946L5.91003 10.5889C5.64504 10.8733 5.26882 11.0409 4.87012 11.052C4.47142 11.0632 4.08554 10.917 3.8035 10.648L0.42419 7.4243C-0.141397 6.88476 -0.141397 6.00999 0.42419 5.47045C0.989776 4.93091 1.90677 4.93091 2.47236 5.47045L4.76557 7.65805L11.4693 0.463722C12.0007 -0.106569 12.9161 -0.157937 13.5139 0.348988Z" fill="#5B1D3D"/>
+                        </svg></div><div class="product-tag-content product-water-content">Practical exercises designed to help you explore better sex</div></div>
+                    </div>
+                    {% endif %}
+                    {% if product.handle == "1470308"%}
+                    <div class="pb-8 font-medium font-modern text-xl text-dark-purple product-extra-des">{{ product.description }}</div>
+                    <div class="product-tag-service">
+                          <div><div class="currnt-icon"><svg width="14" height="12" viewBox="0 0 14 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M13.5139 0.348988C14.1117 0.855914 14.1656 1.72917 13.6342 2.29946L5.91003 10.5889C5.64504 10.8733 5.26882 11.0409 4.87012 11.052C4.47142 11.0632 4.08554 10.917 3.8035 10.648L0.42419 7.4243C-0.141397 6.88476 -0.141397 6.00999 0.42419 5.47045C0.989776 4.93091 1.90677 4.93091 2.47236 5.47045L4.76557 7.65805L11.4693 0.463722C12.0007 -0.106569 12.9161 -0.157937 13.5139 0.348988Z" fill="#5B1D3D"/>
+                        </svg></div><div class="product-tag-content product-water-content">Tips and tricks to level up your techniques</div></div>
+                        <div><div class="currnt-icon"><svg width="14" height="12" viewBox="0 0 14 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M13.5139 0.348988C14.1117 0.855914 14.1656 1.72917 13.6342 2.29946L5.91003 10.5889C5.64504 10.8733 5.26882 11.0409 4.87012 11.052C4.47142 11.0632 4.08554 10.917 3.8035 10.648L0.42419 7.4243C-0.141397 6.88476 -0.141397 6.00999 0.42419 5.47045C0.989776 4.93091 1.90677 4.93091 2.47236 5.47045L4.76557 7.65805L11.4693 0.463722C12.0007 -0.106569 12.9161 -0.157937 13.5139 0.348988Z" fill="#5B1D3D"/>
+                        </svg></div><div class="product-tag-content product-water-content">Answers to questions you’re scared to ask</div></div>
+                        <div><div class="currnt-icon"><svg width="14" height="12" viewBox="0 0 14 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M13.5139 0.348988C14.1117 0.855914 14.1656 1.72917 13.6342 2.29946L5.91003 10.5889C5.64504 10.8733 5.26882 11.0409 4.87012 11.052C4.47142 11.0632 4.08554 10.917 3.8035 10.648L0.42419 7.4243C-0.141397 6.88476 -0.141397 6.00999 0.42419 5.47045C0.989776 4.93091 1.90677 4.93091 2.47236 5.47045L4.76557 7.65805L11.4693 0.463722C12.0007 -0.106569 12.9161 -0.157937 13.5139 0.348988Z" fill="#5B1D3D"/>
+                        </svg></div><div class="product-tag-content product-water-content">How to improve communication with your partner(s)</div></div>
+                        <div><div class="currnt-icon"><svg width="14" height="12" viewBox="0 0 14 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M13.5139 0.348988C14.1117 0.855914 14.1656 1.72917 13.6342 2.29946L5.91003 10.5889C5.64504 10.8733 5.26882 11.0409 4.87012 11.052C4.47142 11.0632 4.08554 10.917 3.8035 10.648L0.42419 7.4243C-0.141397 6.88476 -0.141397 6.00999 0.42419 5.47045C0.989776 4.93091 1.90677 4.93091 2.47236 5.47045L4.76557 7.65805L11.4693 0.463722C12.0007 -0.106569 12.9161 -0.157937 13.5139 0.348988Z" fill="#5B1D3D"/>
+                        </svg></div><div class="product-tag-content product-water-content">Practical exercises to help explore new sensations</div></div>
+                     </div>
+                    {% endif %}
+                    {% assign full_url = content_for_header | split:'"pageurl":"' | last | split:'"' | first %}
+                    {% form 'customer', action:'/contact' %}
+                      {% if form.posted_successfully? or full_url contains "form_type=customer" %}
+                      <div>
+                        <a class="course-launch btn bg-electric-red tranformtext border-white w-full" href="https://itsnormal.thinkific.com/enroll/1477194?price_id=1808231" target="_blank">Launch course</a>
+                      </div>
+                      {% else %}
+                      <div class="mgts-email-cta flex h-24 mt-10">
+                            <input name="contact[tags]" type="hidden" value="newsletter, course">
+                            <input class="bg-white rounded-l-3xl rounded-r-none text-dark-purple product-extra-des  text-opacity-60 w-3/5 px-7" type="email" value="{% if customer %}{{ customer.email }}{% endif %}" placeholder="Your email address" name="contact[email]" id="NewsletterEmail" aria-label="Your email address" autocorrect="off" autocapitalize="off" required>
+                            <button class="course-get-free-access btn--newsletter__submit bg-electric-red rounded-r-3xl rounded-l-none w-2/5 text-white  product-extra-des font-bold" type="submit">
+                                Get free access!
+                            </button>
+                        </div>
+                        <p class="mt-3 text-xl text-dark-purple text-opacity-60">We send out a regular dose of modern sex education, exclusive offers and new product updates - but if you're not feeling the vibe, unsubscribe anytime.</p>
+                        <div aria-role="alert">
+                            {{ form.errors | default_errors }}
+                        </div>
+                        {% endif %}
+                    {% endform %}
+                  </div>
+               
+                </div>
+              </div>
+          </div>
+      {% endif %}
+     
+  </div>
+</div>
+
+
+
+<style>
+.product-{{product.id}} .bg-primary {
+background-color: {{ product.metafields.colour.primary}};
+}
+.product-{{product.id}} .text-primary {
+color: {{product.metafields.colour.primary}};
+}
+</style>
+
+<script>
+  window.theme = window.theme || {};
+  window.theme.strings = window.theme.strings || {};
+
+  // Override default values of theme.strings for each template.
+  // Values are used by JavaScript only; Liquid must be updated separately
+  window
+      .theme
+      .strings
+      .addToCart = {{ 'products.product.add_to_cart' | t | json }}
+  window
+      .theme
+      .strings
+      .soldOut = {{ 'products.product.sold_out' | t | json }};
+  window
+      .theme
+      .strings
+      .unavailable = {{ 'products.product.unavailable' | t | json }};
+</script>

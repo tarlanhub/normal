@@ -1,0 +1,57 @@
+{% comment %}
+  The contents of the product.liquid template can be found in /sections/product-template/
+{% endcomment %}
+
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4 items-stretch product-course">
+    <div class="md:col-span-3">
+        {% section 'product-course' %}
+  </div>
+    <div class="md:col-span-3 product-features">
+        {% section 'product-course-features' %}
+    </div>
+  {% if product.handle == "how-to-have-sex"%}
+    <div class="md:col-span-3 product-course-outline">
+        {% section 'product-course-outline' %}
+    </div>
+  {% endif %}
+  
+  {% if product.handle == "1470308"%}
+    <div class="md:col-span-3 product-course-outline">
+        {% section 'product-course-outline1' %}
+    </div>
+  {% endif %}
+    
+    <div class="md:col-span-3 satisfy-course">
+        {% section 'satisfy-course' %}
+    </div>
+   
+
+   <div class="md:col-span-3 course-coach">
+        {% section 'course-coach' %}
+    </div>
+    
+    <div class="md:col-span-3">
+        {% render 'product-faq', metafields: product.metafields %}
+    </div>
+</div>
+<script>
+  window.theme = window.theme || {};
+  window.theme.strings = window.theme.strings || {};
+
+  // Override default values of theme.strings for each template.
+  // Values are used by JavaScript only; Liquid must be updated separately
+  window.theme.strings.addToCart = {{ 'products.product.add_to_cart' | t | json }};
+  window.theme.strings.soldOut = {{ 'products.product.sold_out' | t | json }};
+  window.theme.strings.unavailable = {{ 'products.product.unavailable' | t | json }};
+
+<!--Changes started to get the installment price for the product-->
+  $(function()
+  {
+    var price = "{{product.price | money_without_trailing_zeros | remove: "$"}}";
+    var finalprice=parseInt(price)/4;
+
+    $(".installments").append("<b>$"+finalprice+"</b> with &nbsp;</span>");
+    $(".mobileinstallments").append("<b>$"+finalprice+"</b></span>");
+  });
+</script>
+<!--Changes end to get the installment price for the product-->

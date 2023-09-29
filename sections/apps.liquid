@@ -1,0 +1,47 @@
+  <span style="
+    display: block;
+    font-size: 37px;
+    font-weight: 800;
+    text-align: center;
+    margin: 45px;
+"> {{ section.settings.text }} </span>
+<div class="container {% unless section.settings.full_width %} container--large {% else %} container--fullwidth {% endunless %}"
+  style=" margin-bottom: 5rem;"
+  >
+  {%- liquid
+    for block in section.blocks
+      render block
+    endfor
+  -%}
+</div>
+
+{% schema %}
+{
+  "name": "t:sections.apps.name",
+  "class": "mount-app",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "full_width",
+      "label": "t:sections.image.fullwidth",
+      "default": false
+    },
+     {
+      "type": "text",
+      "id": "text",
+      "label":"Section Title"
+    }
+    
+  ],
+  "blocks": [
+    {
+      "type": "@app"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.apps.presets.name"
+    }
+  ]
+}
+{% endschema %}

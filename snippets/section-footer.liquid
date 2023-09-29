@@ -1,0 +1,24 @@
+{%- unless button == blank -%}
+
+  <div class="section-footer {% unless show_always %} element--hide-on-desk {% endunless %}"
+    {% if show_always %} style="text-align:center" {% endif %}
+  >
+    
+    {%- unless button == blank -%}
+
+      <div class="section-footer__actions">
+        {%- liquid
+          unless show_always
+            assign button_style = 'arrow-right button--fullwidth'
+          else
+            assign button_style = 'arrow-right'
+          endunless
+          render 'button', label: button_label, link: link, style: button_style, label_is_translation: button_label_is_translation
+        -%}
+      </div>
+
+    {%- endunless -%}
+  
+  </div>
+
+{%- endunless -%}
