@@ -149,8 +149,12 @@
               {%- assign sort_by = results.sort_by | default: results.default_sort_by -%}
               <select name="sort_by" class="select__select collection-filters__sort" id="SortBy" aria-describedby="a11y-refresh-page-message">
                 {%- for option in results.sort_options -%}
-                  <option value="{{ option.value | escape }}"{% if option.value == sort_by %} selected="selected"{% endif %}>{{ option.name | escape }}</option>
-                {%- endfor -%}
+                                       {% if option.value contains 'price-ascending' or option.value contains 'price-descending' %}
+ 
+                <option value="{{ option.value | escape }}"{% if option.value == sort_by %} selected="selected"{% endif %}>{{ option.name | escape }}</option>
+                               {% endif %}
+
+                                         {%- endfor -%}
               </select>
             </div>
           </div>

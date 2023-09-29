@@ -1,6 +1,8 @@
 {{ 'component-toggle.css' | asset_url | stylesheet_tag }}
 
-<div class="container--large container--vertical-space{% if section.settings.gutter_decrease %}-small{% endif %}">
+<div class="container--large container--vertical-space{% if section.settings.gutter_decrease %}-small{% endif %}" style="
+    margin-bottom: 58px;
+">
 
   {%- render 'section-heading', heading: section.settings.heading, subheading: section.settings.subheading, heading_size: section.settings.section_heading_size, section_layout: section.settings.section_heading_layout, button: section.settings.cta_label, button_label: section.settings.cta_label, link: section.settings.cta_url -%}
 

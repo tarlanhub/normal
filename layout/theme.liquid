@@ -106,6 +106,10 @@
   
 
 {% render 'gsf-conversion-pixels' %}
+
+<!-- Start of LittledataLayer -->
+{% include 'LittledataLayer' %}
+<!-- End of LittledataLayer -->
 </head>
   
   <body id="{{ page_title | handle }}" class="{% if customer %} customer-logged-in {% endif %} template-{{ template.name }} template-{{ template | replace: '.', ' ' | handle }} no-touchevents">
@@ -133,6 +137,11 @@
     centeredSlides: false,
     slidesOffsetAfter: 150,
     slidesOffsetBefore: 170,
+       scrollbar: {
+        el: '.swiper-scrollbar',
+        draggable: true,
+        dragSize: 'auto'
+      },
     breakpoints: {
       320: {
         slidesPerView: 1.2,

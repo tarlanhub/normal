@@ -140,11 +140,14 @@
             <span class="image-slider_inner--block__content">{{ block.settings.content }}</span>
             <a href='{{ block.settings.url }}'class="image-slider_inner--block__button">{{ block.settings.url_text }}</a>
           </div>
+      
 {% endif %}
        
 {% endfor %}
- 
+     
+
     </div>
+       <div class="swiper-scrollbar"> </div>
 	</div>
 
  
@@ -231,6 +234,12 @@ for (i = 0; i < acc.length; i++) {
     margin-top: 0px;
 }
   }
+    .swiper-scrollbar {
+    background: white!important;
+}
+  .swiper-scrollbar-drag {
+    background: #f05a46!important;
+}
 </style>
 {% schema %}
 {

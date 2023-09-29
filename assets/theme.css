@@ -6,7 +6,9 @@
   font-weight: 500;
   src: url('https://assets-normal.s3-ap-southeast-2.amazonaws.com/ModernEra-Medium.otf') format('opentype');
 }
-
+div#player {
+  border-radius: 16px;
+}
 @font-face {
   font-family: "Modern Era";
   font-weight: 700;
@@ -2815,7 +2817,7 @@ input[type=search]::-webkit-search-results-decoration {
   left: 0;
   height: 100%;
   width: 100%;
-  object-fit: cover;
+  object-fit: contain;
 }
 
 @keyframes lazy-loading {
@@ -3192,6 +3194,9 @@ body.sidebar-opened {
   div#shopify-section-template--16632711774463__3a825029-dded-4384-975d-b59e88420be4 .remove-empty-space {
     margin-top: 1rem;
 }
+  .blog-tags {
+    justify-content: center!important;
+}
 }
 
 
@@ -3398,10 +3403,7 @@ div#shopify-section-template--16632711774463__16624574747e3c27ed  .product-item_
    border-bottom:unset;
 }
 .menu-second {
-   font-size:20px;
-   border-top:1px solid #7F3F58;
-   border-bottom:1px solid #7F3F58;
-   
+   font-size:20px;   
 }
 .menu-first{
    font-size:36px;
@@ -3468,5 +3470,16 @@ product-recommendations.product-recommendations .product-item {
 background: #ffffffed;
     border-radius: 10px;}
 
-
-
+span.main-go-top__text {
+    color: white;
+}
+.main-go-top:before{
+  background: #5B1D3D;
+  opacity: 1;
+}
+.main-go-top__icon path {
+    fill: #ffffff;
+}
+.sls-select, .sealsubs-container .sls-select-container select.sls-select {
+ background-color: #ffffff00!important;
+}
